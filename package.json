@@ -1,0 +1,10 @@
+{
+  "name": "uron",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "clients": "pnpm --filter @uron/clients dev",
+    "business": "pnpm --filter @uron/business dev",
+    "drivers": "pnpm --filter @uron/drivers dev"
+  }
+}
