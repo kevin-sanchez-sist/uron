@@ -40,6 +40,7 @@ export const STORES = [
     id: 1,
     name: "Heladería",
     category: "Helados",
+    coords: [4.793194, -75.688971],
     emoji: "🍦",
     image: heladeriaLogo,
     rating: 4.8,
@@ -66,6 +67,7 @@ export const STORES = [
     category: "Empanadas",
     emoji: "🥟",
     image: empanatinLogo,
+    coords: [4.795568, -75.687613],
     rating: 4.7,
     time: "8-12 min",
     distance: "130m",
@@ -85,6 +87,7 @@ export const STORES = [
     category: "Comidas rápidas",
     emoji: "🍟",
     image: salchipapasLogo,
+    coords: [4.790757, -75.690338],
     rating: 4.6,
     time: "10-15 min",
     distance: "130m",
@@ -106,6 +109,7 @@ export const STORES = [
     category: "Tienda",
     emoji: "🛍️",
     image: tiendaLogo,
+    coords: [4.790527, -75.690273],
     rating: 4.4,
     time: "3-5 min",
     distance: "50m",
@@ -127,3 +131,23 @@ export const STORES = [
 ]
 
 export const CATEGORIES = ["Todos", "Helados", "Empanadas", "Comidas rápidas", "Tienda"]
+
+export const BUILDING_COORDS = {
+  "Edificio 1":  [4.795574, -75.688072],
+  "Edificio 2":  [4.796257, -75.687472],
+  "Edificio 3":  [4.795323, -75.688075],
+  "Edificio 4":  [4.795248, -75.688882],
+  "Edificio 5":  [4.794992, -75.688646],
+  "Edificio 6":  [4.793898, -75.688716],
+  "Edificio 7":  [4.793310, -75.688914],
+  "Edificio 8":  [4.792990, -75.689042],
+  "Edificio 9":  [4.792565, -75.689460],
+  "Edificio 10": [4.792012, -75.689808],
+  "Edificio 11": [4.791674, -75.689487],
+  "Edificio 12": [4.789371, -75.690153],
+  "Edificio 13": [4.790715, -75.690108],
+  "Edificio 14": [4.792105, -75.690506],
+  "Edificio 15": [4.795753, -75.691048],
+  "Edificio 16": [4.791772, -75.690849],
+  "Edificio 17": [4.799015, -75.686183],
+}

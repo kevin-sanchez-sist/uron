@@ -4,10 +4,13 @@ import Header from './components/organisms/Header'
 import HomePage from './pages/HomePage'
 import StoreDetailPage from './pages/StoreDetailPage'
 import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
+import TrackingPage from './pages/TrackingPage'
 
 function App() {
   const [page, setPage] = useState('home')
   const [selectedStore, setSelectedStore] = useState(null)
+  const [currentOrder, setCurrentOrder] = useState(null)
   const { cart, addItem, increaseItem, decreaseItem, totalItems, clearCart } = useCart()
 
   const handleStoreClick = (store) => {
@@ -15,19 +18,26 @@ function App() {
     setPage('store')
   }
 
-  const handleConfirm = () => {
-    clearCart()
-    setPage('home')
-    alert('¡Pedido confirmado! Tu Urón está en camino 🛵')
-  }
+  const handleConfirm = ({ name, location, note }) => {
+  const total = cart.reduce((acc, i) => acc + i.price * i.quantity, 0) + 1500
+  setCurrentOrder({
+    name,
+    location,
+    note,
+    total,
+    storeCoords: selectedStore.coords,
+    storeEmoji: selectedStore.emoji,
+  })
+  clearCart()
+  setPage('tracking')
+}
+
+  const hiddenHeader = ['cart', 'checkout', 'tracking']
 
   return (
     <div style={{ maxWidth: '480px', margin: '0 auto', minHeight: '100vh', background: '#F7F8FA' }}>
-      {page !== 'cart' && (
-        <Header
-          totalItems={totalItems}
-          onCartClick={() => setPage('cart')}
-        />
+      {!hiddenHeader.includes(page) && (
+        <Header totalItems={totalItems} onCartClick={() => setPage('cart')} />
       )}
 
       {page === 'home' && (
@@ -49,8 +59,27 @@ function App() {
           cart={cart}
           onIncrease={increaseItem}
           onDecrease={decreaseItem}
-          onBack={() => page === 'cart' ? setPage(selectedStore ? 'store' : 'home') : null}
+          onBack={() => setPage(selectedStore ? 'store' : 'home')}
+          onConfirm={() => setPage('checkout')}
+        />
+      )}
+
+      {page === 'checkout' && (
+        <CheckoutPage
+          cart={cart}
+          onBack={() => setPage('cart')}
           onConfirm={handleConfirm}
+        />
+      )}
+
+      {page === 'tracking' && (
+        <TrackingPage
+          order={currentOrder}
+          onDone={() => {
+            setPage('home')
+            setCurrentOrder(null)
+            setSelectedStore(null)
+          }}
         />
       )}
     </div>
